@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% blocktrans with profile.user.username as username %}{{ username|capitalize }}{% endblocktrans %}{% endblock %}
+{% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
+
+{% block content %}
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Jobs Posted</div>
+
+        <!-- Table -->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Title</th>
+              <th>Created</th>
+              <th>Candidates Matched</th>
+            </tr>
+          </thead>
+          <tbody>
+             {% if job_list %}
+             {% for job in job_list %}
+            <tr>
+              <td><a href="{% url 'job-detail' job.pk %}">{{ job.title }}</a></td>
+              <td>{{ job.created }}</td>
+              <td>{{ job.matches }}</td>
+
+              <td>
+                  <a href="{% url 'job-update' job.pk %}"><i class="fa fa-edit"></i></i></a>
+                  <a href="{% url 'job-delete' job.pk %}"><i class="fa fa-remove"></i></i></a>
+              </td>
+
+            {% endfor %}
+            {% endif %}
+
+          </tbody>
+          </table>
+          <a href="{% url 'job-add' %}">
+              <button type="button" class="btn btn-primary">Add Job</button>
+          </a>
+
+      </div>
+
+
+{% endblock %}

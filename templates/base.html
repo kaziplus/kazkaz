@@ -1,0 +1,106 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" content="text/html" equiv="Content-Type">
+            <meta name="description" content="">
+            <meta name="keywords" content="" />
+
+            <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}"/>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+            <!-- Custom Fonts -->
+            <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+            <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+            <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+            <link rel="stylesheet" href="{% static 'css/grayscale.css' %}"/>
+
+            <title>
+            {% block title %}KazKaz
+            {% endblock %}
+            </title>
+        </head>
+        <body  id="" data-spy="scroll" data-target=".navbar-fixed-top">
+
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand page-scroll" href="/">
+                            <i class="fa fa-bell"></i>  <span class="light">KazKaz</span>
+                        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                        <ul class="nav navbar-nav">
+                            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                            <li class="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li>
+                                {% if user.is_authenticated %}
+                                <a class="page-scroll" href="/accounts/recruiter">Jobs</a>
+                                {% endif %}
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li><a href="" class="page-scroll"><i class="fa fa-user"></i> {{ user.username }}</a></li>
+                                <li><a id="logout" href="/accounts/logout" class="page-scroll"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+                            {% else %}
+                                <li><a id="login" href="/accounts/login/" class="page-scroll">
+                                        <i class="fa fa-sign-in">Sign in</i>
+                                 </a></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+
+        {% block body %}
+
+        <section class="container content-section">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+        </section>
+
+
+        {% endblock %}
+
+        </body>
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static 'js/grayscale.js' %}"></script>
+        <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+        <!-- Navigation -->
+
+    </html>

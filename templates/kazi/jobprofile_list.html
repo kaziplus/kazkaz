@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %}{% trans "Signin" %}{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Reminders</div>
+
+  <!-- Table -->
+
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created</th>
+        <th>Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if reminder_list %}
+        {% for reminder in reminder_list %}
+      <tr>
+        <td><a href="{% url 'reminder-detail' reminder.pk %}">{{ reminder.title }}</a></td>
+        <td>{{ reminder.created }}</td>
+        <td>{{ reminder.due_date }}</td>
+
+        <td>
+            <a href="{% url 'reminder-update' reminder.pk %}"><i class="fa fa-edit"></i></i></a>
+            <a href="{% url 'reminder-delete' reminder.pk %}"><i class="fa fa-remove"></i></i></a>
+        </td>
+
+      {% endfor %}
+      {% endif %}
+
+    </tbody>
+
+  </table>
+  <a href="{% url 'reminder-add' %}">
+      <button type="button" class="btn btn-primary">Add Reminder</button>
+  </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+
+# Celerybeat scheduler file:
+celerybeat-schedule
+
+# Project specific
+dev_local.py
+
+# static files
+staticfiles
+
+# Misc
+*.log
+*.csv
+*.sqlite
+*.sqlite3
+*.todo
+
+migrations_old/
+
+.DS_Store
+.idea
+.ropeproject
+*.txt
+*.pyc
+*.db
+*.xml
+*.swp
+*.pdf
+*.log
+*.cpy
+venv
+data
+__pycache__
+.directory
+node_modules
+docs

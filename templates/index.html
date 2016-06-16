@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+
+{% block title %}KazKaz{% endblock %}
+
+{% block body %}
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">KazKaz</h1>
+                        <p class="intro-text">A smart job matching service.</p>
+                        {% if not user.is_authenticated %}
+                        <a href="/accounts/signup/seeker" class="btn-circle page-scroll">
+                            <button type="button" class="btn btn-info btn-lg">Sign Up to be Hired.</button>
+                        </a>
+                        <a href="/accounts/signup/recruiter" class="btn-circle page-scroll">
+                            <button type="button" class="btn btn-primary btn-lg">Sign Up to Hire.</button>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About our service</h2>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Disclaimer Section -->
+    <section id="disclaimer" class="content-section text-center">
+        <div class="disclaimer">
+        <div class="container">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p>A 2016 product.</p>
+
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+
+{% endblock %}
