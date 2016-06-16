@@ -22,14 +22,9 @@ from apps.accounts import views as accounts_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    #url(r'^accounts/signup/seeker$', 'userena.views.signup', {'signup_form': accounts_forms.JobSeekerProfileForm,
-    #    'extra_context': {'userform':accounts_forms.UserForm}}),
-
-
     url(r'^accounts/login/$', 'userena.views.signin'),
     url(r'^accounts/logout/$', 'userena.views.signout'),
 
-    # url(r'^accounts/', include('userena.urls')),
     url(r'^', include('apps.kazi.urls')),
     url(r'^', include('apps.accounts.urls')),
 ]
